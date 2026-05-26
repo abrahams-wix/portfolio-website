@@ -40,16 +40,6 @@ const projects = [
     ],
     github: "https://github.com/abrahams-wix/Fullstack_5786_project_4",
   },
-  {
-    id: "portfolio",
-    title: "Portfolio Website",
-    stack: ["React", "Tailwind CSS"],
-    highlights: [
-      "Personal portfolio showcasing projects, published Wix documentation, and technical experience.",
-    ],
-    github: "https://github.com/abrahams-wix/portfolio-website",
-    demo: "https://portfolio-website-seven-lilac-96.vercel.app",
-  },
 ];
 
 function GitHubIcon() {
