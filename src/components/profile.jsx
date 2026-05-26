@@ -1,48 +1,28 @@
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  Typography,
-} from "@material-tailwind/react";
-// Updated ProfileCard Component
 export function ProfileCard({
-  name = "Avi Soclof",
-  title = "Computer Science Student",
+  name = "Abraham Soclof",
+  title = "Full Stack Developer · Wix",
   profileImage = "images/profile.jpg",
-  school = "Jerusalem College of Technology",
+  school = "Machon Lev, Jerusalem College of Technology",
 }) {
   return (
-    <Card className="w-full h-full flex flex-col">
-      <CardHeader floated={false} className="h-80">
+    <div className="card-minimal flex h-full w-full flex-col overflow-hidden">
+      <div className="relative min-h-48 flex-1 overflow-hidden bg-blue-gray-100 md:min-h-0">
         <img
           src={profileImage}
-          alt="profile-picture"
-          className="w-full h-full object-cover object-center"
-          style={{ objectPosition: "center 50%" }}
+          alt={name}
+          className="absolute inset-0 h-full w-full object-cover object-[center_50%]"
         />
-      </CardHeader>
-      <CardBody className="text-center flex-grow flex flex-col justify-between">
-        <div>
-          <Typography variant="h4" color="blue-gray" className="mb-2">
-            {name}
-          </Typography>
-          <Typography color="blue-gray" className="font-medium" textGradient>
-            {title}
-          </Typography>
+      </div>
 
-          {/* School Icon and Name in One Row */}
-          <div className="flex items-center justify-center mt-2">
-            <img
-              src="/images/school.svg" // Replace with the correct path to your school icon
-              alt="school"
-              className="h-5 w-5 mr-2"
-            />
-            <Typography color="blue-gray" className="font-medium">
-              {school}
-            </Typography>
-          </div>
+      <div className="flex shrink-0 flex-wrap items-center gap-x-3 gap-y-2 border-t border-blue-gray-100 px-5 py-4 text-left">
+        <h1 className="text-base font-medium text-blue-gray-900">{name}</h1>
+        <p className="text-sm text-blue-gray-500">{title}</p>
+        <div className="flex items-center gap-2 text-sm text-blue-gray-500">
+          <img src="/images/school.svg" alt="" className="h-4 w-4 opacity-60" />
+          <span>{school}</span>
         </div>
-      </CardBody>
-    </Card>
+        <p className="text-xs text-blue-gray-400">Graduating June 2026</p>
+      </div>
+    </div>
   );
 }

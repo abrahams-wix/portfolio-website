@@ -1,184 +1,82 @@
-import { Card, CardBody, Typography, Avatar } from "@material-tailwind/react";
-
-const programmingLanguages = [
-  {
-    codingLang: "C++",
-    logoUrl: "/images/logos/cplusplus.svg",
-    description: "Core & Advanced CS Concepts, OOP",
-  },
-  {
-    codingLang: "Python",
-    logoUrl: "/images/logos/python.svg",
-    description: "Functional Programming, Web Programming, Cybersecurity",
-  },
-  {
-    codingLang: "C#",
-    logoUrl: "/images/logos/cSharp.svg",
-    description: ".Net Framework",
-  },
-
-  {
-    codingLang: "Java",
-    logoUrl: "/images/logos/java.svg",
-    description: "JUnit Testing",
-  },
-  /*  {
-    codingLang: "Mips Assembly Language",
-    logoUrl: "/images/logos/python.svg",
-    description: "",
-  },
-  */
+const webStack = [
+  { name: "React", logoUrl: "/images/logos/react.svg" },
+  { name: "TypeScript", logoUrl: "/images/logos/javaScript.svg" },
+  { name: "Node.js", logoUrl: "/images/logos/node.svg" },
+  { name: "Express", logoUrl: "/images/logos/node.svg" },
+  { name: "HTML & CSS", logoUrl: "/images/logos/html.svg" },
 ];
 
-const webDev = [
-  { codingLang: "React", logoUrl: "/images/logos/react.svg", description: "" },
-  {
-    codingLang: "JavaScript & TypeScript",
-    logoUrl: "/images/logos/javaScript.svg",
-    description: "",
-  },
-  { codingLang: "HTML", logoUrl: "/images/logos/html.svg", description: "" },
-  {
-    codingLang: "CSS/Tailwind",
-    logoUrl: "/images/logos/css.svg",
-    description: "",
-  },
-  { codingLang: "Node.js", logoUrl: "/images/logos/node.svg", description: "" },
+const dataStack = [
+  { name: "Python", logoUrl: "/images/logos/python.svg" },
+  { name: "SQL", logoUrl: "/images/logos/sql.svg" },
+  { name: "PostgreSQL", logoUrl: "/images/logos/postgres.svg" },
 ];
 
-const databases = [
-  {
-    codingLang: "SQL",
-    logoUrl: "/images/logos/sql.svg",
-    description: "",
-  },
-  {
-    codingLang: "PostgreSQL",
-    logoUrl: "/images/logos/postgres.svg",
-    description: "",
-  },
+const aiTools = [
+  { name: "Claude Code", description: "API validation & doc drafting" },
+  { name: "Cursor", description: "AI-assisted development" },
+  { name: "Agent Skills", description: "CLI & REST agent workflows" },
+  { name: "MCP", description: "Model Context Protocol" },
 ];
 
-const awsServices = [
-  {
-    codingLang: "S3",
-    logoUrl: "/images/logos/aws.svg",
-    description: "",
-  },
-  {
-    codingLang: "Lambda",
-    logoUrl: "/images/logos/lambda.svg",
-    description: "",
-  },
-  {
-    codingLang: "DynamoDB",
-    logoUrl: "/images/logos/DynamoDB.svg",
-    description: "",
-  },
+const tools = [
+  { name: "Git", logoUrl: "/images/logos/git.svg" },
+  { name: "Unix / Linux", logoUrl: "/images/logos/Linux.svg" },
+  { name: "macOS", logoUrl: "/images/logos/macOS.svg" },
 ];
 
-const versionControl = [
-  {
-    codingLang: "Unix/Linux",
-    logoUrl: "/images/logos/Linux.svg",
-    description: "",
-  },
-  {
-    codingLang: "MacOS",
-    logoUrl: "/images/logos/macOS.svg",
-    description: "",
-  },
-  {
-    codingLang: "Git Version Control",
-    logoUrl: "/images/logos/git.svg",
-    description: "",
-  },
+const categories = [
+  { title: "Web", items: webStack },
+  { title: "Data", items: dataStack },
+  { title: "AI & Dev Tools", items: aiTools },
+  { title: "Tools", items: tools },
 ];
 
-export function SkillsCards() {
-  const categories = [
-    { title: "Programming Languages", items: programmingLanguages },
-    { title: "Web Development", items: webDev },
-    { title: "Databases", items: databases },
-    { title: "AWS Services", items: awsServices },
-    { title: "OS & Version Control", items: versionControl },
-  ];
-
-  // Split categories into rows
-  const firstRow = categories.slice(0, 3); // First 3 items
-  const secondRow = categories.slice(3); // Remaining 2 items
-
+function SkillItem({ name, logoUrl, description }) {
   return (
-    <div>
-      <h1 class="font-bold leading-snug tracking-tight text-slate-800 mx-auto mt-4 mb-8 w-full text-2xl lg:max-w-3xl lg:text-5xl">
-        {" "}
-        Coding Experience
-      </h1>
-      <div className="w-full px-4 space-y-16">
-        {/* First row */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-5">
-          {firstRow.map(({ title, items }, index) => (
-            <CardWithList key={index} title={title} items={items} />
-          ))}
-        </div>
-
-        {/* Second row, centered */}
-        <div className="flex justify-center gap-x-5">
-          {secondRow.map(({ title, items }, index) => (
-            <CardWithList key={index} title={title} items={items} />
-          ))}
-        </div>
+    <div className="flex items-center gap-3 py-2.5">
+      {logoUrl ? (
+        <img src={logoUrl} alt="" className="h-5 w-5 shrink-0 opacity-70" />
+      ) : (
+        <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded bg-blue-gray-100 text-[10px] font-medium text-blue-gray-500">
+          {name.charAt(0)}
+        </span>
+      )}
+      <div className="min-w-0 text-left">
+        <p className="text-sm text-blue-gray-800">{name}</p>
+        {description && (
+          <p className="text-xs text-blue-gray-400">{description}</p>
+        )}
       </div>
     </div>
   );
 }
 
-function CardWithList({ title, items }) {
+function SkillCard({ title, items }) {
   return (
-    <Card className="w-full max-w-sm mb-6">
-      <CardBody>
-        <Typography variant="h5" color="blue-gray" className="mb-4">
-          {title}
-        </Typography>
-        {/* Scrollable container for the list */}
-        <div
-          className="divide-y divide-gray-200 max-h-60 overflow-y-auto p-2"
-          style={{
-            scrollbarWidth: "thin", // For Firefox
-            scrollbarColor: "#cbd5e1 #f1f5f9", // Thumb and track colors
-          }}
-        >
-          {items.map(({ codingLang, logoUrl, description }, index) => (
-            <div
-              key={index}
-              className="flex items-center gap-x-3 py-3"
-              style={{ textAlign: "left" }}
-            >
-              {/* Logo */}
-              <Avatar size="sm" src={logoUrl} alt={codingLang} />
-              {/* Title and Description */}
-              <div className="flex flex-col">
-                <Typography
-                  color="blue-gray"
-                  variant="h6"
-                  className="text-left"
-                >
-                  {codingLang}
-                </Typography>
-                {description && (
-                  <Typography
-                    variant="small"
-                    color="gray"
-                    className="text-left"
-                  >
-                    {description}
-                  </Typography>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-      </CardBody>
-    </Card>
+    <div className="card-minimal p-5">
+      <h3 className="mb-3 text-xs font-medium uppercase tracking-[0.12em] text-blue-gray-400">
+        {title}
+      </h3>
+      <div className="divide-y divide-blue-gray-100">
+        {items.map((item) => (
+          <SkillItem key={item.name} {...item} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export function SkillsCards() {
+  return (
+    <section>
+      <p className="section-label text-center">Skills</p>
+      <h2 className="section-title mb-10 text-center">Stack</h2>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {categories.map((category) => (
+          <SkillCard key={category.title} {...category} />
+        ))}
+      </div>
+    </section>
   );
 }

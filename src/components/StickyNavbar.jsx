@@ -1,55 +1,55 @@
 import React from "react";
-import {
-  Navbar,
-  Collapse,
-  Typography,
-  IconButton,
-} from "@material-tailwind/react";
+import { Collapse, IconButton } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-function NavList() {
+const navLinks = [
+  { to: "/", label: "About" },
+  { to: "/#experience", label: "Work" },
+  { to: "/#writing", label: "Docs" },
+  { to: "/#projects", label: "Projects" },
+];
+
+function NavList({ onNavigate }) {
+  const location = useLocation();
+
   return (
-    <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium"
-      >
-        <Link
-          to="/"
-          className="flex items-center hover:text-blue-500 transition-colors"
-        >
-          About Me
-        </Link>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium"
-      >
-        <Link
-          to="/resume"
-          className="flex items-center hover:text-blue-500 transition-colors"
-        >
-          Resume
-        </Link>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium"
-      >
-        <Link
-          to="/cleveland-sports"
-          className="flex items-center hover:text-blue-500 transition-colors"
-        >
-          Cleveland Sports Scores
-        </Link>
-      </Typography>
+    <ul className="flex flex-col gap-1 lg:flex-row lg:items-center lg:gap-8">
+      {navLinks.map(({ to, label }) => {
+        const isHash = to.includes("#");
+        const isActive =
+          !isHash && location.pathname === to;
+
+        if (isHash) {
+          return (
+            <li key={to}>
+              <a
+                href={to}
+                onClick={onNavigate}
+                className="text-sm text-blue-gray-500 transition-colors duration-200 hover:text-blue-gray-900"
+              >
+                {label}
+              </a>
+            </li>
+          );
+        }
+
+        return (
+          <li key={to}>
+            <Link
+              to={to}
+              onClick={onNavigate}
+              className={`text-sm transition-colors duration-200 ${
+                isActive
+                  ? "text-blue-gray-900"
+                  : "text-blue-gray-500 hover:text-blue-gray-900"
+              }`}
+            >
+              {label}
+            </Link>
+          </li>
+        );
+      })}
     </ul>
   );
 }
@@ -57,51 +57,45 @@ function NavList() {
 export function StickyNavbar() {
   const [openNav, setOpenNav] = React.useState(false);
 
-  const handleWindowResize = () =>
-    window.innerWidth >= 960 && setOpenNav(false);
-
   React.useEffect(() => {
-    window.addEventListener("resize", handleWindowResize);
-
-    return () => {
-      window.removeEventListener("resize", handleWindowResize);
-    };
+    const handleResize = () => window.innerWidth >= 960 && setOpenNav(false);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
-    <Navbar className="sticky top-0 z-50 mx-auto max-w-screen-xl px-6 py-3 bg-white shadow-md">
-      <div className="flex items-center justify-between text-blue-gray-900">
-        <Typography
-          as={Link}
+    <header className="sticky top-0 z-50 border-b border-blue-gray-200/80 bg-white/80 backdrop-blur-md">
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+        <Link
           to="/"
-          variant="h6"
-          className="mr-4 cursor-pointer py-1.5"
+          className="text-sm font-medium tracking-tight text-blue-gray-900"
         >
-          <img
-            src="/images/logo512.png"
-            alt="Avi-Soclof-logo"
-            style={{ width: "8%", height: "auto", borderRadius: "50%" }}
-          />
-        </Typography>
-        <div className="hidden lg:block">
+          Abraham Soclof
+        </Link>
+
+        <nav className="hidden lg:block">
           <NavList />
-        </div>
+        </nav>
+
         <IconButton
           variant="text"
-          className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+          className="ml-auto h-8 w-8 text-blue-gray-600 hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
           ripple={false}
           onClick={() => setOpenNav(!openNav)}
         >
           {openNav ? (
-            <XMarkIcon className="h-6 w-6" strokeWidth={2} />
+            <XMarkIcon className="h-5 w-5" strokeWidth={1.5} />
           ) : (
-            <Bars3Icon className="h-6 w-6" strokeWidth={2} />
+            <Bars3Icon className="h-5 w-5" strokeWidth={1.5} />
           )}
         </IconButton>
       </div>
+
       <Collapse open={openNav}>
-        <NavList />
+        <div className="border-t border-blue-gray-100 px-6 py-4 lg:hidden">
+          <NavList onNavigate={() => setOpenNav(false)} />
+        </div>
       </Collapse>
-    </Navbar>
+    </header>
   );
 }

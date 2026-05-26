@@ -2,41 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 500;
+    letter-spacing: -0.02em;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@layer components {
+  .section-label {
+    @apply text-xs font-medium uppercase tracking-[0.15em] text-blue-gray-400 mb-3;
   }
-  to {
-    transform: rotate(360deg);
+
+  .section-title {
+    @apply text-2xl md:text-3xl font-medium text-blue-gray-900 tracking-tight;
+  }
+
+  .card-minimal {
+    @apply bg-white border border-blue-gray-200/80 rounded-lg;
+  }
+
+  .link-subtle {
+    @apply text-blue-gray-600 hover:text-blue-gray-900 transition-colors duration-200;
   }
 }

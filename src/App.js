@@ -4,80 +4,62 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { StickyNavbar } from "./components/StickyNavbar";
 import { ProfileCard } from "./components/profile";
 import { AboutSection } from "./components/IntroParagraph";
+import { Experience } from "./components/Experience";
+import { Writing } from "./components/Writing";
 import { SkillsCards } from "./components/skillsCard";
 import { Links } from "./components/links";
 import { Projects } from "./components/Projects";
-import PDFViewer from "./components/pdfViewer"; // Adjust path as needed
 
 import "./App.css";
 
-// Import or create your other page components
-const Resume = () => (
-  <div className="p-6 max-w-screen-xl mx-auto">
-    <PDFViewer />
-
-    {/* Resume content goes here */}
-  </div>
-);
-
-const ClevelandSports = () => (
-  <div className="p-6 max-w-screen-xl mx-auto">
-    <h1 className="text-2xl font-bold mb-4">Coming Soon!</h1>
-    {/* Sports scores content goes here */}
-  </div>
-);
-
 const Home = () => (
-  <div>
-    {/* Parent container with flex-row for alignment */}
-    <div className="flex flex-col md:flex-row p-6 gap-8 max-w-screen-xl mx-auto">
-      {/* Left side - Profile Card */}
-      <div className="md:w-1/3 flex">
-        <div className="w-full">
+  <main>
+    <section className="mx-auto max-w-5xl px-6 py-12 md:py-16">
+      <div className="flex flex-col gap-12 md:flex-row md:items-stretch md:gap-16">
+        <div className="flex md:w-72 lg:w-80 shrink-0">
           <ProfileCard />
         </div>
-      </div>
-
-      {/* Right side - About Section and Links */}
-      <div className="md:w-2/3 flex flex-col space-y-4 justify-center">
-        <div className="w-full">
+        <div className="flex flex-1 flex-col gap-8">
           <AboutSection />
-        </div>
-        <div className="w-full">
           <Links />
         </div>
       </div>
-    </div>
+    </section>
 
-    {/* Divider */}
-    <div className="border-t border-gray-300 mt-4"></div>
+    <section id="experience" className="border-t border-blue-gray-200/80">
+      <div className="mx-auto max-w-5xl px-6 py-16">
+        <Experience />
+      </div>
+    </section>
 
-    {/* Skills Section */}
-    <div className="flex flex-col items-center p-6 max-w-screen-xl mx-auto">
-      <SkillsCards />
-    </div>
+    <section id="writing" className="border-t border-blue-gray-200/80">
+      <div className="mx-auto max-w-5xl px-6 py-16">
+        <Writing />
+      </div>
+    </section>
 
-    {/* Divider */}
-    <div className="border-t border-gray-300 mt-4"></div>
+    <section id="projects" className="border-t border-blue-gray-200/80">
+      <div className="mx-auto max-w-5xl px-6 py-16">
+        <Projects />
+      </div>
+    </section>
 
-    {/* Projects Section */}
-    <div className="w-full max-w-screen-xl mx-auto">
-      <Projects />
-    </div>
-  </div>
+    <section className="border-t border-blue-gray-200/80">
+      <div className="mx-auto max-w-5xl px-6 py-16">
+        <SkillsCards />
+      </div>
+    </section>
+  </main>
 );
 
 function App() {
   return (
-    <div className="App">
+    <div className="min-h-screen bg-[#fafafa]">
       <BrowserRouter>
         <ThemeProvider>
           <StickyNavbar />
-
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/resume" element={<Resume />} />
-            <Route path="/cleveland-sports" element={<ClevelandSports />} />
           </Routes>
         </ThemeProvider>
       </BrowserRouter>
