@@ -2,42 +2,53 @@ import React, { useState } from "react";
 
 const projects = [
   {
-    id: "live-sports",
-    title: "Live Sports App",
-    stack: ["Express", "REST", "ESPN API", "Polling"],
-    description:
-      "Cleveland-focused sports dashboard with team pages, score tables, and schedules for fans checking results quickly.",
-    highlights: [
-      "Express proxy with league routers forwarding requests to ESPN public APIs for NBA, NFL, and MLB.",
-      "10+ REST routes for scoreboard, teams, schedules, standings, news, and game summaries.",
-      "Timer-based polling keeps pages fast instead of one heavy bulk load.",
-    ],
-    github: "https://github.com/abrahams-wix/live-sports-app",
-    demo: "https://live-sports-app-lyart.vercel.app/home.html",
-  },
-  {
     id: "tic-tac-toe",
     title: "Multiplayer Tic Tac Toe",
     stack: ["Express 5", "WebSockets", "Node.js"],
-    description:
-      "Real-time tic tac toe with three play modes — CPU, local two-player, and online — so users can start a game in one click.",
     highlights: [
-      "Express 5 server serving static assets and a WebSocket endpoint on a single port.",
-      "JSON WebSocket protocol for join, move, leave, and full board sync across handler modules.",
-      "Lobby and game room modules tracking two players per room with turn validation.",
+      "Designed 3 play modes (CPU, local 2 player, online) so different users could start a game in one click without a tutorial.",
+      "Built Express 5 server serving static assets and a WebSocket endpoint for real time room state on 1 port.",
+      "Defined JSON WebSocket protocol for join, move, leave, and full board sync across 4 server handler modules.",
+      "Implemented lobby and game room modules tracking 2 players per room with turn validation on 9 cell boards.",
     ],
     github: "https://github.com/abrahams-wix/tic-tac-toe",
     demo: "https://tic-tac-toe-0y98.onrender.com",
   },
   {
-    id: "library-billing",
-    title: "Library Billing System",
-    stack: ["PostgreSQL", "SQL", "PL/pgSQL", "Python"],
-    image: "/images/library.png",
-    imageAlt: "Library Billing System dashboard",
-    description:
-      "PostgreSQL database system managing 2M+ records across subscriptions, penalties, and financial operations. Optimized query performance with strategic indexing, PL/pgSQL procedures, and Python migration scripts.",
-    github: "https://github.com/abrahams-wix/Databases_5785_8915_5246",
+    id: "live-sports",
+    title: "Live Sports App",
+    stack: ["Express", "REST", "ESPN API"],
+    highlights: [
+      "Built Cleveland focused team pages with score tables for fans checking schedules and results quickly.",
+      "Built Express proxy with 3 league routers forwarding requests to ESPN public APIs for NBA, NFL, and MLB.",
+      "Exposed 10+ REST routes for scoreboard, teams, schedules, standings, news, and game summaries as JSON.",
+      "Refreshed score and schedule data by polling on a timer so pages stayed fast instead of 1 heavy bulk load.",
+    ],
+    github: "https://github.com/abrahams-wix/live-sports-app",
+    demo: "https://live-sports-app-lyart.vercel.app/home.html",
+  },
+  {
+    id: "fullstack-course",
+    title: "Full Stack Web Development Course",
+    stack: ["HTML", "CSS", "React", "Node.js"],
+    highlights: [
+      "Unit 1: Shipped responsive 8 unit static site with HTML, CSS Flexbox, Grid, 2+ breakpoints, forms, and media embeds.",
+      "Unit 2: Built games hub with login flow and user scores stored in localStorage for returning players.",
+      "Unit 3: Built SPA with client routing, simulated network delay, 2 fake servers, and REST CRUD on JSON in localStorage.",
+      "Unit 4: Built React app with json server, fetch, React Router, and CRUD plus search on todos, posts, and albums.",
+      "Unit 5: Built React editor with contentEditable, Range API formatting, undo stack, and per user documents in localStorage.",
+    ],
+    github: "https://github.com/abrahams-wix/Fullstack_5786_project_4",
+  },
+  {
+    id: "portfolio",
+    title: "Portfolio Website",
+    stack: ["React", "Tailwind CSS"],
+    highlights: [
+      "Personal portfolio showcasing projects, published Wix documentation, and technical experience.",
+    ],
+    github: "https://github.com/abrahams-wix/portfolio-website",
+    demo: "https://portfolio-website-seven-lilac-96.vercel.app",
   },
 ];
 
@@ -69,7 +80,7 @@ export const Projects = () => {
   return (
     <section>
       <p className="section-label text-center">Projects</p>
-      <h2 className="section-title mb-8 text-center">Selected Work</h2>
+      <h2 className="section-title mb-8 text-center">Projects</h2>
 
       <div className="card-minimal overflow-hidden">
         <div
@@ -95,16 +106,6 @@ export const Projects = () => {
 
         {activeProject && (
           <div className="p-6 md:p-8">
-            {activeProject.image && (
-              <div className="mb-6 overflow-hidden rounded-md bg-blue-gray-100">
-                <img
-                  src={activeProject.image}
-                  alt={activeProject.imageAlt}
-                  className="w-full object-cover"
-                />
-              </div>
-            )}
-
             {activeProject.stack && (
               <div className="mb-6 flex flex-wrap gap-2">
                 {activeProject.stack.map((tag) => (
@@ -118,23 +119,17 @@ export const Projects = () => {
               </div>
             )}
 
-            <h3 className="mb-3 text-lg font-medium text-blue-gray-900">
+            <h3 className="mb-5 text-lg font-medium text-blue-gray-900">
               {activeProject.title}
             </h3>
 
-            <p className="mb-5 text-sm leading-relaxed text-blue-gray-600 md:text-base">
-              {activeProject.description}
-            </p>
-
-            {activeProject.highlights && (
-              <ul className="mb-6 space-y-2 pl-4 text-sm leading-relaxed text-blue-gray-600">
-                {activeProject.highlights.map((item) => (
-                  <li key={item} className="list-disc">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            )}
+            <ul className="mb-6 space-y-2 pl-4 text-sm leading-relaxed text-blue-gray-600">
+              {activeProject.highlights.map((item) => (
+                <li key={item} className="list-disc">
+                  {item}
+                </li>
+              ))}
+            </ul>
 
             <div className="flex flex-wrap gap-3">
               <ProjectLink href={activeProject.github}>

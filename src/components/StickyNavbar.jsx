@@ -5,9 +5,9 @@ import { Link, useLocation } from "react-router-dom";
 
 const navLinks = [
   { to: "/", label: "About" },
-  { to: "/#experience", label: "Work" },
-  { to: "/#writing", label: "Docs" },
   { to: "/#projects", label: "Projects" },
+  { to: "/#writing", label: "Documentation" },
+  { to: "/#experience", label: "Experience" },
 ];
 
 function NavList({ onNavigate }) {

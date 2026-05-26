@@ -53,10 +53,10 @@ export function Writing() {
   return (
     <section>
       <p className="section-label">Documentation</p>
-      <h2 className="section-title mb-3">Published on dev.wix.com</h2>
+      <h2 className="section-title mb-3">Public documentation</h2>
       <p className="mb-8 max-w-2xl text-sm text-blue-gray-500">
-        Technical articles on Wix platform APIs, CLI migration guides, site
-        extension sandboxing, and AI developer tooling.
+        Technical articles on dev.wix.com — documentation optimized for both
+        AI consumption and human readability.
       </p>
       <ul className="divide-y divide-blue-gray-100 border-y border-blue-gray-100">
         {articles.map((article) => (

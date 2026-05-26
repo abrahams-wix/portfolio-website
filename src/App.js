@@ -5,6 +5,7 @@ import { StickyNavbar } from "./components/StickyNavbar";
 import { ProfileCard } from "./components/profile";
 import { AboutSection } from "./components/IntroParagraph";
 import { Experience } from "./components/Experience";
+import { Education } from "./components/Education";
 import { Writing } from "./components/Writing";
 import { SkillsCards } from "./components/skillsCard";
 import { Links } from "./components/links";
@@ -26,9 +27,9 @@ const Home = () => (
       </div>
     </section>
 
-    <section id="experience" className="border-t border-blue-gray-200/80">
+    <section id="projects" className="border-t border-blue-gray-200/80">
       <div className="mx-auto max-w-5xl px-6 py-16">
-        <Experience />
+        <Projects />
       </div>
     </section>
 
@@ -38,9 +39,15 @@ const Home = () => (
       </div>
     </section>
 
-    <section id="projects" className="border-t border-blue-gray-200/80">
+    <section id="experience" className="border-t border-blue-gray-200/80">
       <div className="mx-auto max-w-5xl px-6 py-16">
-        <Projects />
+        <Experience />
+      </div>
+    </section>
+
+    <section id="education" className="border-t border-blue-gray-200/80">
+      <div className="mx-auto max-w-5xl px-6 py-16">
+        <Education />
       </div>
     </section>
 

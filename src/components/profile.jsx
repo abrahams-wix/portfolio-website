@@ -1,6 +1,6 @@
 export function ProfileCard({
   name = "Abraham Soclof",
-  title = "Full Stack Developer · Wix",
+  title = "Junior Developer",
   profileImage = "images/profile.jpg",
   school = "Machon Lev, Jerusalem College of Technology",
 }) {
@@ -21,7 +21,7 @@ export function ProfileCard({
           <img src="/images/school.svg" alt="" className="h-4 w-4 opacity-60" />
           <span>{school}</span>
         </div>
-        <p className="text-xs text-blue-gray-400">Graduating June 2026</p>
+        <p className="text-xs text-blue-gray-400">Expected graduation June 2026</p>
       </div>
     </div>
   );
